@@ -8,4 +8,5 @@
 #' @aliases jimpipeline
 #' @docType package
 #' @keywords package
+#' @import bftools
 NULL
