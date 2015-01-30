@@ -11,17 +11,23 @@ quickhash(f, offsets = 0, chunksizes = Inf, CheckFileSize = TRUE, ...)
 \item{offsets}{integer offsets into file at which to read data}
 
 \item{chunksizes}{amount of data to read at each offset}
+
+\item{CheckFileSize}{see if the file has enough data to match the
+requirements defined by \code{offsets} and \code{chunksizes} and compute a
+digest of the entire file when there is insufficient data. The default
+value of \code{TRUE} is strongly recommended.}
+
+\item{...}{Additional arguments passed to the \code{\link{digest}} function.}
 }
 \value{
 character vector containing hash values for file(s)
 }
 \description{
-Default is to compute md5 hash for whole of each file.
-negative offsets => seek to offset position wrt end of file
-chunksize=Inf => whole file
-Uses digest() which defaults to algo=md5
+Default is to compute md5 hash for whole of each file. negative offsets =>
+seek to offset position wrt end of file \code{chunksize=Inf} => whole file.
+Uses digest() which defaults to algo="md5"
 }
 \seealso{
-\code{\link{digest}}
+\code{\link{digest}}, \code{\link{quickhash.lsm}}
 }
 
