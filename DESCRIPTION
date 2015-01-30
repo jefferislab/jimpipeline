@@ -10,7 +10,9 @@ Description: This will contain functions that we use during our large scale
     generic as possible, but for the moment use by third parties is not a major
     design consideration.
 License: GPL-3
-Imports: 
+Imports:
     bftools,
-    digest
-Suggests: testthat
+    digest,
+    nat.utils
+Suggests:
+    testthat
