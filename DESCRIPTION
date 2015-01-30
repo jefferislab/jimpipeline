@@ -1,9 +1,12 @@
 Package: jimpipeline
 Type: Package
-Title: What the package does (short line)
+Title: Package to wrap Jefferis lab image processing / registration pipeline
 Version: 1.0
 Date: 2015-01-16
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Author: Gregory Jefferis <jefferis@gmail.com>
+Maintainer: Gregory Jefferis <jefferis@gmail.com>
+Description: This will contain functions that we use during our large scale
+    image processing and registration work. We will try to make these as
+    generic as possible, but for the moment use by third parties is not a major
+    design consideration.
+License: GPL-3
