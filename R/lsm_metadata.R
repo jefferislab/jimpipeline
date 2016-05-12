@@ -23,6 +23,11 @@ lsm_metadata<-function(f,cachefile=TRUE,
     return(FALSE)
   }
   
+  if(tools::file_ext(f)=="bz2"){
+    # we need to uncompress first
+    f=bunzip2(f)
+  }
+  
   if(is.logical(cachefile)) {
     if(cachefile) {
       cachefile=sub("\\.lsm$",".txt",f)
