@@ -16,6 +16,5 @@ Imports:
     nat.utils
 Suggests:
     testthat
-Remotes:
-    jefferislab/bftools
-
+Remotes: jefferislab/bftools
+RoxygenNote: 5.0.1.9000
