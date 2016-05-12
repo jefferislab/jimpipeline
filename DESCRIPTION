@@ -16,3 +16,6 @@ Imports:
     nat.utils
 Suggests:
     testthat
+Remotes:
+    jefferislab/bftools
+
