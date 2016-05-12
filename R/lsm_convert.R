@@ -1,30 +1,34 @@
 #' Split Zeiss LSMs and save each channel to a nrrd
-#'
+#' 
 #' image.lsm -> image_01.nrrd image_02.nrrd image_03.nrrd
-#'
-#' Uses fiji and BatchConvertFlycircuitLSMsToNrrds macro, which in turn
-#' relies on LOCI Bio-Formats which cannot currently be run headless.
-#'
-#' Uses RunCmdForNewerInput to compare in/outputs to see if action required.
-#' Uses file locking so can be run in parallel, although IO intensive so
-#' running too many jobs in parallel would be counter-productive. 
-#' RandomOrder=TRUE reduces file locking pressure when several processes
-#' compete to lock the same file.
-#' @param lsmstoconvertdir Directory containing LSM
+#' 
+#' Uses fiji and BatchConvertFlycircuitLSMsToNrrds macro, which in turn relies
+#' on LOCI Bio-Formats which cannot currently be run headless.
+#' 
+#' Uses RunCmdForNewerInput to compare in/outputs to see if action required. 
+#' Uses file locking so can be run in parallel, although IO intensive so running
+#' too many jobs in parallel would be counter-productive. RandomOrder=TRUE
+#' reduces file locking pressure when several processes compete to lock the same
+#' file.
+#' @param lsmstoconvert Paths to one or more LSMs or a single directory
+#'   containing LSMs
 #' @param rawnrrdsdir Output directory in which to save nrrds
 #' @param RandomOrder Scramble processing order (default TRUE)
 #' @param DryRun Show what would happen but don't run (default TRUE)
 #' @param Verbose Show filename (default !DryRun)
 #' @param ... Additional arguments passed to \code{\link{runFijiMacro}}
-#' @return Named logical vector indicating whether action was required for each file
+#' @return Named logical vector indicating whether action was required for each
+#'   file
 #' @export
 #' @seealso \code{\link{runFijiMacro}}, \code{\link{RunCmdForNewerInput}}
-convertlsmstonrrd<-function(lsmstoconvertdir, rawnrrdsdir,
+convertlsmstonrrd<-function(lsmstoconvert, rawnrrdsdir,
   RandomOrder=TRUE,DryRun=TRUE,Verbose=!DryRun, ...){
   
   if(!file.exists(rawnrrdsdir)) dir.create(rawnrrdsdir)
   
-  lsmstoconvert=dir(lsmstoconvertdir,pattern = "lsm$",full.names = T)
+  if(length(lsmstoconvert)==1 && file.info(lsmstoconvert)$isdir){
+    lsmstoconvert=dir(lsmstoconvert,pattern = "lsm$",full.names = T)  
+  }
   if(RandomOrder) lsmstoconvert <- sample(lsmstoconvert)
   runsummary=logical(length(lsmstoconvert))
   names(runsummary)=basename(lsmstoconvert)

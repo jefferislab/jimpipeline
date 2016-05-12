@@ -4,11 +4,12 @@
 \alias{convertlsmstonrrd}
 \title{Split Zeiss LSMs and save each channel to a nrrd}
 \usage{
-convertlsmstonrrd(lsmstoconvertdir, rawnrrdsdir, RandomOrder = TRUE,
+convertlsmstonrrd(lsmstoconvert, rawnrrdsdir, RandomOrder = TRUE,
   DryRun = TRUE, Verbose = !DryRun, ...)
 }
 \arguments{
-\item{lsmstoconvertdir}{Directory containing LSM}
+\item{lsmstoconvert}{Paths to one or more LSMs or a single directory
+containing LSMs}
 
 \item{rawnrrdsdir}{Output directory in which to save nrrds}
 
@@ -21,20 +22,21 @@ convertlsmstonrrd(lsmstoconvertdir, rawnrrdsdir, RandomOrder = TRUE,
 \item{...}{Additional arguments passed to \code{\link{runFijiMacro}}}
 }
 \value{
-Named logical vector indicating whether action was required for each file
+Named logical vector indicating whether action was required for each
+  file
 }
 \description{
 image.lsm -> image_01.nrrd image_02.nrrd image_03.nrrd
 }
 \details{
-Uses fiji and BatchConvertFlycircuitLSMsToNrrds macro, which in turn
-relies on LOCI Bio-Formats which cannot currently be run headless.
+Uses fiji and BatchConvertFlycircuitLSMsToNrrds macro, which in turn relies
+on LOCI Bio-Formats which cannot currently be run headless.
 
-Uses RunCmdForNewerInput to compare in/outputs to see if action required.
-Uses file locking so can be run in parallel, although IO intensive so
-running too many jobs in parallel would be counter-productive. 
-RandomOrder=TRUE reduces file locking pressure when several processes
-compete to lock the same file.
+Uses RunCmdForNewerInput to compare in/outputs to see if action required. 
+Uses file locking so can be run in parallel, although IO intensive so running
+too many jobs in parallel would be counter-productive. RandomOrder=TRUE
+reduces file locking pressure when several processes compete to lock the same
+file.
 }
 \seealso{
 \code{\link{runFijiMacro}}, \code{\link{RunCmdForNewerInput}}
