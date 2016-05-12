@@ -16,7 +16,7 @@ for the moment use by third parties is not a major design consideration.
   
   \itemize{
   
-  \item{\code{jimpipeline.fiji}}{Location of fiji to use for running scripts}
+  \item{\code{jimpipeline.fiji}}{ Location of fiji to use for running scripts}
   
   }
 }

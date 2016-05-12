@@ -8,7 +8,7 @@
 #'   
 #'   \itemize{
 #'   
-#'   \item{\code{jimpipeline.fiji}}{Location of fiji to use for running scripts}
+#'   \item{\code{jimpipeline.fiji}}{ Location of fiji to use for running scripts}
 #'   
 #'   }
 #' @name jimpipeline-package
