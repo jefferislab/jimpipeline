@@ -51,9 +51,6 @@ fiji <- function(fijipath=NULL) {
     if(!is.null(fijipath)) {
       if(!file.exists(fijipath))
         stop("fiji is not at: ", fijipath, " as specified by options('jimpipeline.fiji')!")
-      else {
-        options(jimpipeline.fiji=NULL)
-      }
     } else {
       # look for it in sensible places
       if(nzchar(fijipath <- Sys.which('fiji'))){
@@ -62,5 +59,5 @@ fiji <- function(fijipath=NULL) {
       else stop("Unable to find fiji!")
     }
   }
-  fijipath
+  normalizePath(fijipath)
 }
