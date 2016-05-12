@@ -36,6 +36,9 @@ runFijiMacro(macro = "", macroArg = "", headless = FALSE, batch = TRUE,
 \item{DryRun}{Whether to return the command to be run rather than actually 
 executing it.}
 }
+\value{
+logical indicating if the command completed successfully
+}
 \description{
 Run a Fiji macro
 }

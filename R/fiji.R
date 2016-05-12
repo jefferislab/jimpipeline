@@ -16,6 +16,7 @@
 #' @param DryRun Whether to return the command to be run rather than actually 
 #'   executing it.
 #' @export
+#' @return logical indicating if the command completed successfully
 runFijiMacro <- function(macro="",macroArg="",headless=FALSE,batch=TRUE,
                          MinMem=MaxMem,MaxMem="2500m",IncrementalGC=TRUE,Threads=NULL,
                          fijiArgs=NULL,javaArgs=NULL,ijArgs=NULL,
@@ -36,7 +37,7 @@ runFijiMacro <- function(macro="",macroArg="",headless=FALSE,batch=TRUE,
   
   cmd<-paste(fijiPath,javaArgs,fijiArgs,"--",macroCall,ijArgs)
   if(DryRun) return(cmd)
-  system(cmd)
+  return(0==system(cmd))
 }
 
  
