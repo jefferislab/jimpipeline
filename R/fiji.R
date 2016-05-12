@@ -11,8 +11,9 @@
 #' @param fijiArgs Arguments for ImageJ/Fiji (as opposed to the macro itself)
 #' @param javaArgs Arguments for java
 #' @param ijArgs Arguments for ImageJ
-#' @param fijiPath Path to fiji executable
-#' @param DryRun Whether to return the command to be run rather than actually
+#' @param fijiPath Path to fiji executable (can be set by
+#'   \code{options(jimpipeline.fiji="/some/path")})
+#' @param DryRun Whether to return the command to be run rather than actually 
 #'   executing it.
 #' @export
 runFijiMacro <- function(macro="",macroArg="",headless=FALSE,batch=TRUE,
@@ -49,7 +50,7 @@ fiji <- function(fijipath=NULL) {
     fijipath=getOption('jimpipeline.fiji')
     if(!is.null(fijipath)) {
       if(!file.exists(fijipath))
-        stop("fiji is not at: ", fijipath, " as specificed by options('jimpipeline.fiji')!")
+        stop("fiji is not at: ", fijipath, " as specified by options('jimpipeline.fiji')!")
       else {
         options(jimpipeline.fiji=NULL)
       }

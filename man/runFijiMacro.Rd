@@ -30,9 +30,10 @@ runFijiMacro(macro = "", macroArg = "", headless = FALSE, batch = TRUE,
 
 \item{ijArgs}{Arguments for ImageJ}
 
-\item{fijiPath}{Path to fiji executable}
+\item{fijiPath}{Path to fiji executable (can be set by
+\code{options(jimpipeline.fiji="/some/path")})}
 
-\item{DryRun}{Whether to return the command to be run rather than actually
+\item{DryRun}{Whether to return the command to be run rather than actually 
 executing it.}
 }
 \description{
