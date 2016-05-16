@@ -2,7 +2,7 @@
 % Please edit documentation in R/lsm_metadata.R
 \name{lsm_metadata}
 \alias{lsm_metadata}
-\title{Extract the metadata from Zeiss LSM file using loci bioformats}
+\title{Extract the metadata from Zeiss LSM file using loci bioformats as text vector}
 \usage{
 lsm_metadata(f, cachefile = TRUE, ReturnMetaData = TRUE, Force = FALSE,
   UseLock = FALSE)
@@ -32,6 +32,6 @@ for(f in dir(lsmdir,patt="lsm$",full=T)) lsm_metadata(f,UseLock=TRUE)
 }
 }
 \seealso{
-\code{\link{parseKeyLSMMetadata}}
+\code{\link{parse_key_lsm_metadata}}
 }
 

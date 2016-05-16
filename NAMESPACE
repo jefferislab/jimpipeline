@@ -3,6 +3,8 @@
 export(bunzip2)
 export(convertlsmstonrrd)
 export(lsm_metadata)
+export(make_lsm_df)
+export(parse_key_lsm_metadata)
 export(quickhash)
 export(quickhash.lsm)
 export(runFijiMacro)
