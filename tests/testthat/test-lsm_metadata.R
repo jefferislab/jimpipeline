@@ -8,4 +8,5 @@ test_that("we can extract lsm metadata", {
 test_that("we can parse key lsm metadata", {
   lsm='test.lsm'
   expect_equal(parse_key_lsm_metadata(lsm)$dim[['DimensionX']], 512)
+  expect_equal(parse_key_lsm_metadata(lsm)$dim[['DimensionChannels']], 1)
 })

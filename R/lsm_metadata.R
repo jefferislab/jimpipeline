@@ -195,9 +195,9 @@ parse_key_lsm_metadata<-function(f,text=NULL,ReturnRawMetaData=FALSE){
   
   # TODO: add Pixel type = uint16
   
-  valueslist=strsplit(c(grep("Dimension[XYZ]",ll,value=T),grep("VoxelSize[XYZ]",ll,value=T)),": ")
+  valueslist=strsplit(c(grep("Dimension([XYZ]|Channels)",ll,value=T),grep("VoxelSize[XYZ]",ll,value=T)),": ")
   values=as.numeric(sapply(valueslist,"[[",2))
-  if(length(valueslist)!=6) stop("Error retrieving Dimension metadata for file:",f)
+  if(length(valueslist)!=7) stop("Error retrieving Dimension metadata for file:",f)
   names(values)=sapply(valueslist,"[[",1)
   structure(list(dim=values,chan=chans),file=f,
             rawmd=if(ReturnRawMetaData) ll else NULL)
