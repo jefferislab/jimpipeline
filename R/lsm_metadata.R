@@ -170,8 +170,13 @@ make_lsm_df<-function(lsmdir,oldlsmdf=NULL,extrafields=NULL,Verbose=TRUE){
 #'
 #' @return a list containing parsed metadata
 #' @export
+#' @importFrom tools file_ext
 #' @seealso \code{\link{lsm_metadata}}
 parse_key_lsm_metadata<-function(f,text=NULL,ReturnRawMetaData=FALSE){
+  ext=file_ext(f)
+  if(ext=="lsm") {
+    text=lsm_metadata(f = f)
+  }
   ll <- if(!is.null(text)) text else readLines(f)
   
   chans=vector("character",length=2)
