@@ -187,8 +187,10 @@ parse_key_lsm_metadata<-function(f,text=NULL,ReturnRawMetaData=FALSE){
   ch2=sub(".*Name: (.*)","\\1",
           grep("DataChannel #2 Name",ll,fixed=T,value=T))
   chans[2]=ifelse(length(ch2)>0,ch2, NA)
-  chans[3]=grep("ChannelName0",ll,fixed=T,value=T)
-  chans[3]=sub("ChannelName0: ","",chans[3])
+  chnm0=grep("ChannelName0",ll,fixed=T,value=T)
+  if(length(chnm0))
+    chans[3]=sub("ChannelName0: ","",chans[3])
+  else chans[3]=NA_character_
   names(chans)=c("Chan1Name","Chan2Name","ChannelName0")
   
   # TODO: add Pixel type = uint16
