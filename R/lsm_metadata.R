@@ -195,10 +195,29 @@ parse_key_lsm_metadata<-function(f,text=NULL,ReturnRawMetaData=FALSE){
   
   # TODO: add Pixel type = uint16
   
-  valueslist=strsplit(c(grep("Dimension([XYZ]|Channels)",ll,value=T),grep("VoxelSize[XYZ]",ll,value=T)),": ")
-  values=as.numeric(sapply(valueslist,"[[",2))
-  if(length(valueslist)!=7) stop("Error retrieving Dimension metadata for file:",f)
-  names(values)=sapply(valueslist,"[[",1)
-  structure(list(dim=values,chan=chans),file=f,
+  selected_lines=grep("Dimension([XYZ]|Channels)",ll,value=T)
+  selected_lines=c(selected_lines,grep("VoxelSize[XYZ]",ll,value=T))
+  
+  parse_values <- function(lines){
+    valueslist=strsplit(lines, ": ")
+    values_str=sapply(valueslist,"[[",2)
+    values=suppressWarnings(as.numeric(values_str))
+    if(any(is.na(values)))
+      values=values_str
+    names(values)=sapply(valueslist,"[[",1)
+    values
+  }
+  dimvalues=parse_values(selected_lines)
+  if(length(dimvalues)!=7) stop("Error retrieving Dimension metadata for file:",f)
+  
+  lens_lines=grep("(Recording Objective|Zoom X)", ll, value=T)
+  lensvalues=parse_values(lens_lines)
+  
+  timestamp=parse_values(grep("Sample 0Time", ll, value = T))
+  timestamp=ISOdatetime(1899,12,30,0,0,0)+timestamp[[1]]*60*60*24
+  
+  bits=parse_values(grep("Bits Per Sample", ll, value = T))
+  
+  structure(list(dim=dimvalues,chan=chans, lens=lensvalues, timestamp=timestamp, bits=bits),file=f,
             rawmd=if(ReturnRawMetaData) ll else NULL)
 }
