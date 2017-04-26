@@ -181,11 +181,11 @@ parse_key_lsm_metadata<-function(f,text=NULL,ReturnRawMetaData=FALSE){
   
   chans=vector("character",length=2)
   ch1=sub(".*Name: (.*)","\\1",
-          grep("DataChannel #1 Name",ll,fixed=T,value = T))
+          grep("DataChannel Name #1",ll,fixed=T,value = T))
   chans[1]=ifelse(length(ch1)>0,ch1, NA)
   
   ch2=sub(".*Name: (.*)","\\1",
-          grep("DataChannel #2 Name",ll,fixed=T,value=T))
+          grep("DataChannel Name #2",ll,fixed=T,value=T))
   chans[2]=ifelse(length(ch2)>0,ch2, NA)
   chnm0=grep("ChannelName0",ll,fixed=T,value=T)
   if(length(chnm0))
