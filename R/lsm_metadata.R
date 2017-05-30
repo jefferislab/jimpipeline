@@ -170,28 +170,54 @@ make_lsm_df<-function(lsmdir,oldlsmdf=NULL,extrafields=NULL,Verbose=TRUE){
 #'
 #' @return a list containing parsed metadata
 #' @export
+#' @importFrom tools file_ext
 #' @seealso \code{\link{lsm_metadata}}
 parse_key_lsm_metadata<-function(f,text=NULL,ReturnRawMetaData=FALSE){
+  ext=file_ext(f)
+  if(ext=="lsm") {
+    text=lsm_metadata(f = f)
+  }
   ll <- if(!is.null(text)) text else readLines(f)
   
   chans=vector("character",length=2)
   ch1=sub(".*Name: (.*)","\\1",
-          grep("DataChannel #1 Name",ll,fixed=T,value = T))
+          grep("DataChannel Name #1",ll,fixed=T,value = T))
   chans[1]=ifelse(length(ch1)>0,ch1, NA)
   
   ch2=sub(".*Name: (.*)","\\1",
-          grep("DataChannel #2 Name",ll,fixed=T,value=T))
+          grep("DataChannel Name #2",ll,fixed=T,value=T))
   chans[2]=ifelse(length(ch2)>0,ch2, NA)
-  chans[3]=grep("ChannelName0",ll,fixed=T,value=T)
-  chans[3]=sub("ChannelName0: ","",chans[3])
+  chnm0=grep("ChannelName0",ll,fixed=T,value=T)
+  if(length(chnm0))
+    chans[3]=sub("ChannelName0: ","",chans[3])
+  else chans[3]=NA_character_
   names(chans)=c("Chan1Name","Chan2Name","ChannelName0")
   
   # TODO: add Pixel type = uint16
   
-  valueslist=strsplit(c(grep("Dimension[XYZ]",ll,value=T),grep("VoxelSize[XYZ]",ll,value=T)),": ")
-  values=as.numeric(sapply(valueslist,"[[",2))
-  if(length(valueslist)!=6) stop("Error retrieving Dimension metadata for file:",f)
-  names(values)=sapply(valueslist,"[[",1)
-  structure(list(dim=values,chan=chans),file=f,
+  selected_lines=grep("Dimension([XYZ]|Channels)",ll,value=T)
+  selected_lines=c(selected_lines,grep("VoxelSize[XYZ]",ll,value=T))
+  
+  parse_values <- function(lines){
+    valueslist=strsplit(lines, ": ")
+    values_str=sapply(valueslist,"[[",2)
+    values=suppressWarnings(as.numeric(values_str))
+    if(any(is.na(values)))
+      values=values_str
+    names(values)=sapply(valueslist,"[[",1)
+    values
+  }
+  dimvalues=parse_values(selected_lines)
+  if(length(dimvalues)!=7) stop("Error retrieving Dimension metadata for file:",f)
+  
+  lens_lines=grep("(Recording Objective|Zoom X)", ll, value=T)
+  lensvalues=parse_values(lens_lines)
+  
+  timestamp=parse_values(grep("Sample 0Time", ll, value = T))
+  timestamp=ISOdatetime(1899,12,30,0,0,0)+timestamp[[1]]*60*60*24
+  
+  bits=parse_values(grep("Bits Per Sample", ll, value = T))
+  
+  structure(list(dim=dimvalues,chan=chans, lens=lensvalues, timestamp=timestamp, bits=bits),file=f,
             rawmd=if(ReturnRawMetaData) ll else NULL)
 }

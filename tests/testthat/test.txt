@@ -1,0 +1,190 @@
+Checking file format [Zeiss Laser-Scanning Microscopy]
+Initializing reader
+ZeissLSMReader initializing tests/testthat/test.lsm
+Reading LSM metadata for series #0
+Unknown LaserMedium value '' will be stored as "Other"
+Unknown LaserType value 'DPSS 561-10' will be stored as "Other"
+Initialization took 0.136s
+
+Reading core metadata
+Filename = tests/testthat/test.lsm
+Series count = 1
+Series #0 :
+	Image count = 1
+	RGB = false (1) 
+	Interleaved = false
+	Indexed = true (false color)
+	Width = 512
+	Height = 512
+	SizeZ = 1
+	SizeT = 1
+	SizeC = 1
+	Thumbnail size = 128 x 128
+	Endianness = intel (little)
+	Dimension order = XYZCT (uncertain)
+	Pixel type = uint16
+	Valid bits per pixel = 16
+	Metadata complete = false
+	Thumbnail series = false
+	-----
+	Plane #0 <=> Z 0, C 0, T 0
+
+
+Reading global metadata
+BeamSplitter Acquire #1: true
+BeamSplitter Acquire #2: true
+BeamSplitter Acquire #3: true
+DataChannel Acquire #1: true
+DetectionChannel Acquire #1: true
+IlluminationChannel Acquire #1: true
+Laser Acquire #1: true
+Recording Acquire #1: true
+Track Acquire #1: true
+X position for position #1: 0.0
+X position for position #2: 0.0
+Y position for position #1: 0.0
+Y position for position #2: 0.0
+Z position for position #1: 0.0
+Z position for position #2: 0.0
+
+Reading metadata
+BeamSplitter Filter #1: MBS 488/561/633
+BeamSplitter Filter #2: MBS 690+
+BeamSplitter Filter #3: None
+BeamSplitter Filter Set #1: HT
+BeamSplitter Filter Set #2: MBS_InVis
+BeamSplitter Filter Set #3: FW1
+BeamSplitter Name #1: HT
+BeamSplitter Name #2: MBS_InVis
+BeamSplitter Name #3: FW1
+ChannelName #1: ChS1
+DataChannel Acquire #1: 1
+DataChannel Bits Per Sample #1: 16
+DataChannel Color #1: 255
+DataChannel Name #1: ChS1
+DataChannel Ratio Const. 1 #1: 0.0
+DataChannel Ratio Const. 2 #1: 0.0
+DataChannel Ratio Const. 3 #1: 1.0
+DataChannel Ratio Const. 4 #1: 0.0
+DataChannel Ratio Const. 5 #1: 0.0
+DataChannel Ratio Const. 6 #1: 0.0
+DataChannel Ratio Track 1 #1: 0
+DataChannel Ratio Track 2 #1: 0
+DataChannel Ratio Type #1: 0
+DataChannel Sample Type #1: 2
+DataType: 8 bit unsigned integer
+DataType2: original scan data
+DetectionChannel Acquire #1: 1
+DetectionChannel Amplifier Gain #1: 1.0
+DetectionChannel Amplifier Gain B/C 1 #1: 0.0
+DetectionChannel Amplifier Gain B/C 2 #1: 0.0
+DetectionChannel Amplifier Name #1: Amplifier1
+DetectionChannel Amplifier Offset #1: -1120.2255319148935
+DetectionChannel Amplifier Offset B/C 1 #1: 0.0
+DetectionChannel Amplifier Offset B/C 2 #1: 0.0
+DetectionChannel Detection Channel Name #1: ChS1
+DetectionChannel Detector Gain #1: 764.4112392398895
+DetectionChannel Detector Gain B/C 1 #1: 0.0
+DetectionChannel Detector Gain B/C 2 #1: 0.0
+DetectionChannel Detector Name #1: PmtSPI1
+DetectionChannel Dye Name #1: Alexa Fluor 568
+DetectionChannel Integrator Name #1: IntegratorSPI
+DetectionChannel Pinhole Diameter #1: 38.466599999999985
+DetectionChannel Pinhole Name #1: PH1
+DetectionChannel SPI Wavelength End #1: 630.372972
+DetectionChannel SPI Wavelength Start #1: 571.727496
+DetectionChannel Spectral Scan Channels #1: 32
+DimensionChannels: 1
+DimensionM: 1
+DimensionP: 1
+DimensionX: 512
+DimensionY: 512
+DimensionZ: 1
+DisplayAspectTime: 1.0
+DisplayAspectX: 1.0
+DisplayAspectY: 1.0
+DisplayAspectZ: 1.0
+IlluminationChannel Acquire #1: 1
+IlluminationChannel Name #1: 561
+IlluminationChannel Power #1: 5.0
+IlluminationChannel Power B/C 1 #1: 0.0
+IlluminationChannel Power B/C 2 #1: 0.0
+IlluminationChannel Wavelength #1: 561.0
+Laser Acquire #1: 1
+Laser Name #1: DPSS 561-10
+Laser Power #1: 20.0
+MagicNumber: 67127628
+OriginX: 0.0
+OriginY: 0.0
+OriginZ: 0.0
+Recording Camera Binning #1: 1
+Recording Camera Frame Height #1: 1030
+Recording Camera Frame Width #1: 1300
+Recording Camera Offset X #1: 0.0
+Recording Camera Offset Y #1: 0.0
+Recording Camera Supersampling #1: 0
+Recording Images Height #1: 512
+Recording Images Width #1: 512
+Recording Interpolation Y #1: 1
+Recording Line Spacing #1: 0.6918881841365326
+Recording Lines Per Plane #1: 512
+Recording Linescan XY Size #1: 512
+Recording Name #1: Temp
+Recording Number of Channels #1: 1
+Recording Number of Planes #1: 1
+Recording Number of Stacks #1: 1
+Recording Number of Stacks #2: 10
+Recording Objective #1: EC Plan-Neofluar 40x/1.30 Oil DIC M27
+Recording Original Scan Data #1: 1
+Recording Plane Spacing #1: 2.0
+Recording Planes Per Volume #1: 1
+Recording Position B/C Contrast 1 #1: 0.0
+Recording Position B/C Contrast 2 #1: 0.0
+Recording Precession #1: 0.0
+Recording Rotation #1: 0.0
+Recording Sample 0Time #1: 41732.6559837963
+Recording Sample 0X #1: 0.0
+Recording Sample 0Y #1: 0.0
+Recording Sample 0Z #1: 53.900000000001455
+Recording Sample Spacing #1: 0.6918881841365326
+Recording Samples Per Line #1: 512
+Recording Scan Direction #1: 0
+Recording Scan Mode #1: Plane
+Recording Special Scan Mode #1: NoSpecialMode
+Recording Start Scan Event #1: 0
+Recording Start Scan Time #1: 0.0
+Recording Stop Scan Event #1: 0
+Recording Stop Scan Time #1: 0.0
+Recording Time Series #1: 0
+Recording Use B/C Correction #1: 1
+Recording Use ROIs #1: 0
+Recording Use Reduced Memory ROIs #1: 0
+Recording User #1: Jefferis
+Recording Zoom X #1: 0.6
+Recording Zoom Y #1: 0.6
+Recording Zoom Z #1: 1.0
+ScanType: x-y-z scan
+SpectralScan: no spectral scan
+StructureSize: 464
+ThumbnailX: 128
+ThumbnailY: 128
+TimeInterval: 0.0
+TimeStamp #1: 175054.89724751515
+ToolbarFlags: 0
+Track Acquire #1: 1
+Track Bleach After Scan Number #1: 0
+Track Bleach Count #1: 0
+Track Bleach Scan Number #1: 0
+Track Is Bleach Track #1: 0
+Track Is Ratio Track #1: 0
+Track Multiplex Order #1: 1
+Track Multiplex Type #1: 1
+Track Name #1: Track 2
+Track Pixel Time #1: 1.575757575758034
+Track SPI Center Wavelength #1: 571.727496
+Track Sampling Method #1: 1
+Track Sampling Mode #1: 1
+Track Sampling Number #1: 1
+VoxelSizeX: 0.6918881841365326
+VoxelSizeY: 0.6918881841365326
+VoxelSizeZ: 1.0E-13
