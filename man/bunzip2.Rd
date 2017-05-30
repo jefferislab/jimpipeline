@@ -17,4 +17,3 @@ Path to the uncompressed file
 \description{
 Uncompress a file with bunzip2
 }
-

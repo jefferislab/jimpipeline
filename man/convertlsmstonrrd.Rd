@@ -41,4 +41,3 @@ file.
 \seealso{
 \code{\link{runFijiMacro}}, \code{\link{RunCmdForNewerInput}}
 }
-

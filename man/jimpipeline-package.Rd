@@ -2,8 +2,8 @@
 % Please edit documentation in R/jimpipeline-package.R
 \docType{package}
 \name{jimpipeline-package}
-\alias{jimpipeline}
 \alias{jimpipeline-package}
+\alias{jimpipeline}
 \title{Package to wrap Jefferis lab image processing pipeline}
 \description{
 This contains functions that we use during our large scale image processing 
@@ -19,10 +19,10 @@ for the moment use by third parties is not a major design consideration.
   \item{\code{jimpipeline.fiji}}{ Location of fiji to use for running 
   scripts}
   
-  If this is not set, at the moment the package will check the path for an 
-  executable called fiji.
+  If this is not set, at the moment the package will check the system path
+  for an executable called \code{fiji}.
   
   }
 }
-\keyword{package}
 
+\keyword{package}

@@ -42,4 +42,3 @@ logical indicating if the command completed successfully
 \description{
 Run a Fiji macro
 }
-

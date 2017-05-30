@@ -34,4 +34,3 @@ for(f in dir(lsmdir,patt="lsm$",full=T)) lsm_metadata(f,UseLock=TRUE)
 \seealso{
 \code{\link{parse_key_lsm_metadata}}
 }
-

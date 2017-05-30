@@ -29,4 +29,3 @@ segmented neurons which nearly all have 0 background
 \seealso{
 \code{\link{quickhash}} and \code{\link{digest}}
 }
-

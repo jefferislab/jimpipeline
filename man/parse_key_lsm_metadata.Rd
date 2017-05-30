@@ -22,4 +22,3 @@ Parse key Zeiss LSM metadata into an R list
 \seealso{
 \code{\link{lsm_metadata}}
 }
-

@@ -31,4 +31,3 @@ If an extrafields function is supplied, it should take one parameter, the
 \seealso{
 \code{\link{lsm_metadata}}
 }
-

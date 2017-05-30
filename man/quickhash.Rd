@@ -31,4 +31,3 @@ Uses digest() which defaults to algo="md5"
 \seealso{
 \code{\link{digest}}, \code{\link{quickhash.lsm}}
 }
-
