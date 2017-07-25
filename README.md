@@ -1,4 +1,8 @@
 # jimpipeline
+This package contain functions used by the [Jefferis Lab](jefferislab.org) during our large scale
+image processing and registration work. We will try to make these as
+generic as possible, but for the moment use by third parties is not a major
+design consideration.
 
 ## Installation
 Currently there isn't a released version on [CRAN](http://cran.r-project.org/).
