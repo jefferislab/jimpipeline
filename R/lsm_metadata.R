@@ -117,12 +117,13 @@ make_lsm_df<-function(lsmdir,oldlsmdf=NULL,extrafields=NULL,Verbose=TRUE){
   if(!is.null(oldlsmdf)){
     # we're going to use a cached version of the lsmdf table
     # first drop anything that's not unique by md5
-    oldlsmdf=subset(oldlsmdf,!duplicated(txtmd5) & !is.na(txtmd5))
+    
+    oldlsmdf=oldlsmdf[!duplicated(oldlsmdf$txtmd5) & !is.na(oldlsmdf$txtmd5), , drop=FALSE]
     # then use the md5 for rownames
     rownames(oldlsmdf)=oldlsmdf$txtmd5
     
     # figure out for which rows we have cached data
-    gene_names_withmd5match=subset(lsmdf,txtmd5%in%oldlsmdf$txtmd5,gene_name)[[1]]
+    gene_names_withmd5match=lsmdf[lsmdf$txtmd5%in%oldlsmdf$txtmd5,"gene_name"]
     # and the one we will need to parse from scratch
     gene_names_toparse=setdiff(lsmdf$gene_name,gene_names_withmd5match)
     
