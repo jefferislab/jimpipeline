@@ -38,11 +38,13 @@
 convertlsmstonrrd<-function(lsmstoconvert, rawnrrdsdir, ChannelOrder=c(2,1,3,4),
   RandomOrder=TRUE,DryRun=TRUE,Verbose=!DryRun, ...){
   
+  rawnrrdsdir=path.expand(rawnrrdsdir)
   if(!file.exists(rawnrrdsdir)) dir.create(rawnrrdsdir)
   
-  if(length(lsmstoconvert)==1 && file.info(lsmstoconvert)$isdir){
-    lsmstoconvert=dir(lsmstoconvert,pattern = "lsm$",full.names = T)  
-  }
+  lsmstoconvert <- if(length(lsmstoconvert)==1 && file.info(lsmstoconvert)$isdir) {
+    dir(lsmstoconvert, pattern = "lsm$", full.names = T)  
+  } else path.expand(lsmstoconvert)
+  
   if(RandomOrder) lsmstoconvert <- sample(lsmstoconvert)
   runsummary=logical(length(lsmstoconvert))
   names(runsummary)=basename(lsmstoconvert)
@@ -55,10 +57,11 @@ convertlsmstonrrd<-function(lsmstoconvert, rawnrrdsdir, ChannelOrder=c(2,1,3,4),
   # c(2,1,3,4) -> "02010304" for ImageJ
   ChannelOrder=paste0("0", ChannelOrder, collapse = "")
   
+  lsmtonrrd=system.file('ijm','lsmtonrrd.txt', package = 'jimpipeline')
   for(i in seq(along=lsmstoconvert)){
     f=lsmstoconvert[i]
     cmd=runFijiMacro(
-      macro=system.file('ijm','lsmtonrrd.txt', package = 'jimpipeline'),
+      macro=lsmtonrrd,
       macroArg=paste(f, rawnrrdsdir, 'nrrd', ChannelOrder, sep=","),
       # javaArgs="-noverify",
       headless=TRUE, DryRun=TRUE, ...)
