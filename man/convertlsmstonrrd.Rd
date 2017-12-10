@@ -4,8 +4,8 @@
 \alias{convertlsmstonrrd}
 \title{Split Zeiss LSMs and save each channel to a nrrd}
 \usage{
-convertlsmstonrrd(lsmstoconvert, rawnrrdsdir, RandomOrder = TRUE,
-  DryRun = TRUE, Verbose = !DryRun, ...)
+convertlsmstonrrd(lsmstoconvert, rawnrrdsdir, ChannelOrder = c(2, 1, 3, 4),
+  RandomOrder = TRUE, DryRun = TRUE, Verbose = !DryRun, ...)
 }
 \arguments{
 \item{lsmstoconvert}{Paths to one or more LSMs or a single directory
@@ -13,7 +13,10 @@ containing LSMs}
 
 \item{rawnrrdsdir}{Output directory in which to save nrrds}
 
-\item{RandomOrder}{Scramble processing order (default TRUE)}
+\item{ChannelOrder}{The order in which channels of each individual image are
+saved (defaults to swapping the order of first 2 channels - see details).}
+
+\item{RandomOrder}{Scramble processing order of files (default TRUE)}
 
 \item{DryRun}{Show what would happen but don't run (default TRUE)}
 
@@ -29,14 +32,27 @@ Named logical vector indicating whether action was required for each
 image.lsm -> image_01.nrrd image_02.nrrd image_03.nrrd
 }
 \details{
-Uses fiji and BatchConvertFlycircuitLSMsToNrrds macro, which in turn relies
-on LOCI Bio-Formats which cannot currently be run headless.
+ChannelOrder specifies the output stem of the channels in the input image.
+Thus \code{c(2,3,1)} would imply:
 
-Uses RunCmdForNewerInput to compare in/outputs to see if action required. 
+image.lsm[1:3] -> image_02.nrrd image_03.nrrd image_01.nrrd
+
+\code{lsmstoconvert} uses Fiji and lsmtonrrd macro, which in turn relies on
+LOCI Bio-Formats which cannot currently be run headless.
+
+Uses RunCmdForNewerInput to compare in/outputs to see if action required.
 Uses file locking so can be run in parallel, although IO intensive so running
 too many jobs in parallel would be counter-productive. RandomOrder=TRUE
 reduces file locking pressure when several processes compete to lock the same
 file.
+}
+\examples{
+\dontrun{
+convertlsmstonrrd("my.lsm", ChannelOrder=1:3, DryRun=FALSE)
+}
+
+# Path to the Fiji macro distributed with the package
+system.file('ijm','lsmtonrrd.txt', package = 'jimpipeline')
 }
 \seealso{
 \code{\link{runFijiMacro}}, \code{\link{RunCmdForNewerInput}}
