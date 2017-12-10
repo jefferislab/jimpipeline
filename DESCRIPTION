@@ -13,6 +13,7 @@ License: GPL-3
 Imports:
     bftools,
     digest,
+    utils,
     nat.utils
 Suggests:
     testthat

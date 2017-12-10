@@ -1,5 +1,7 @@
 
-#' Run a Fiji macro
+#' Call external Fiji/ImageJ executable
+#' 
+#' @description \code{runFijiMacro} runs a macro using preferred Fiji executable
 #' 
 #' @param macro Path to macro to run
 #' @param macroArg Arguments for macro
@@ -41,24 +43,35 @@ runFijiMacro <- function(macro="",macroArg="",headless=FALSE,batch=TRUE,
 }
 
  
-# Private function to eturn path to preferred fiji
-fiji <- function(fijipath=NULL) {
-  if(!is.null(fijipath)) {
-    if(!file.exists(fijipath)) stop("fiji is not at: ", fijipath)
-    options(jimpipeline.fiji=fijipath)
+#' @description \code{fiji} returns path to preferred Fiji executable
+#' @rdname runFijiMacro
+#' @export
+#' @examples 
+#' # Path to current Fiji executable
+#' fiji()
+#' 
+#' \dontrun{
+#' # Set path to preferred Fiji executable (this will be remembered)
+#' # you can also set options(jimpipeline.fiji="/some/path")
+#' fiji("/Applications/Fiji.app/Contents/MacOS/ImageJ-macosx")
+#' }
+fiji <- function(fijiPath=NULL) {
+  if(!is.null(fijiPath)) {
+    if(!file.exists(fijiPath)) stop("fiji is not at: ", fijiPath)
+    options(jimpipeline.fiji=fijiPath)
   } else {
     # do we have an option set?
-    fijipath=getOption('jimpipeline.fiji')
-    if(!is.null(fijipath)) {
-      if(!file.exists(fijipath))
-        stop("fiji is not at: ", fijipath, " as specified by options('jimpipeline.fiji')!")
+    fijiPath=getOption('jimpipeline.fiji')
+    if(!is.null(fijiPath)) {
+      if(!file.exists(fijiPath))
+        stop("fiji is not at: ", fijiPath, " as specified by options('jimpipeline.fiji')!")
     } else {
       # look for it in sensible places
-      if(nzchar(fijipath <- Sys.which('fiji'))){
-        options(jimpipeline.fiji=fijipath)
+      if(nzchar(fijiPath <- Sys.which('fiji'))){
+        options(jimpipeline.fiji=fijiPath)
       }
       else stop("Unable to find fiji!")
     }
   }
-  normalizePath(fijipath)
+  normalizePath(fijiPath)
 }

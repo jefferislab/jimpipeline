@@ -2,6 +2,7 @@
 
 export(bunzip2)
 export(convertlsmstonrrd)
+export(fiji)
 export(lsm_metadata)
 export(make_lsm_df)
 export(parse_key_lsm_metadata)
@@ -13,3 +14,4 @@ import(digest)
 importFrom(nat.utils,RunCmdForNewerInput)
 importFrom(nat.utils,makelock)
 importFrom(tools,file_ext)
+importFrom(utils,file_test)

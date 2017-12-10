@@ -34,6 +34,7 @@ quickhash.lsm<-function(f,offsets=c(0,-1e5),chunksizes=c(1.5e5,1e5),...){
 #' @export
 #' @seealso \code{\link{digest}}, \code{\link{quickhash.lsm}}
 #' @import digest
+#' @importFrom utils file_test
 quickhash<-function(f,offsets=0,chunksizes=Inf,CheckFileSize=TRUE,...){
 	if(length(f)>1)
 		return(sapply(f,quickhash,offsets=offsets,chunksizes=chunksizes,CheckFileSize=CheckFileSize,...))

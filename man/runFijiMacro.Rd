@@ -2,12 +2,15 @@
 % Please edit documentation in R/fiji.R
 \name{runFijiMacro}
 \alias{runFijiMacro}
-\title{Run a Fiji macro}
+\alias{fiji}
+\title{Call external Fiji/ImageJ executable}
 \usage{
 runFijiMacro(macro = "", macroArg = "", headless = FALSE, batch = TRUE,
   MinMem = MaxMem, MaxMem = "2500m", IncrementalGC = TRUE,
   Threads = NULL, fijiArgs = NULL, javaArgs = NULL, ijArgs = NULL,
   fijiPath = fiji(), DryRun = FALSE)
+
+fiji(fijiPath = NULL)
 }
 \arguments{
 \item{macro}{Path to macro to run}
@@ -40,5 +43,17 @@ executing it.}
 logical indicating if the command completed successfully
 }
 \description{
-Run a Fiji macro
+\code{runFijiMacro} runs a macro using preferred Fiji executable
+
+\code{fiji} returns path to preferred Fiji executable
+}
+\examples{
+# Path to current Fiji executable
+fiji()
+
+\dontrun{
+# Set path to preferred Fiji executable (this will be remembered)
+# you can also set options(jimpipeline.fiji="/some/path")
+fiji("/Applications/Fiji.app/Contents/MacOS/ImageJ-macosx")
+}
 }
