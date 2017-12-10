@@ -11,7 +11,8 @@ make_lsm_df(lsmdir, oldlsmdf = NULL, extrafields = NULL, Verbose = TRUE)
 
 \item{oldlsmdf}{Dataframe or path to rda file containing one}
 
-\item{extrafields}{Function to parse extra fields from metadata for each image}
+\item{extrafields}{Function to parse extra fields from metadata for each
+image}
 
 \item{Verbose}{Logical: Show messages about progress/updating of cached data}
 }
@@ -19,15 +20,19 @@ make_lsm_df(lsmdir, oldlsmdf = NULL, extrafields = NULL, Verbose = TRUE)
 dataframe
 }
 \description{
-Will calculate md5 sums for all input files and then use this to update a
-  dataframe.
-If an extrafields function is supplied, it should take one parameter, the
-  list output of parse_key_lsm_metadata(), which will include as an
-  attribute the full contents of the metadata file dumped by the loci
-  showinf tool. The function should take care to return values for all
-  fields that it _could_ return each time it is called even if these are NA
-  and to ensure that values have a consistent data type per field.
+Make summary dataframe for lsm files and their key metadata
+}
+\details{
+Will calculate md5 sums for all input files and then use this to
+  update a dataframe.
+
+  If an extrafields function is supplied, it should take one parameter, the
+  list output of \code{\link{parse_key_lsm_metadata}}, which will include as
+  an attribute the full contents of the metadata file dumped by the loci
+  showinf tool. The function should take care to return values for all fields
+  that it \emph{could} return each time it is called even if these are NA and
+  to ensure that values have a consistent data type per field.
 }
 \seealso{
-\code{\link{lsm_metadata}}
+\code{\link{lsm_metadata}}, \code{\link{parse_key_lsm_metadata}}
 }

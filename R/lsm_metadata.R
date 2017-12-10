@@ -71,21 +71,23 @@ LoadObjsFromRda<-function(f){
 
 #' Make summary dataframe for lsm files and their key metadata
 #'
-#' Will calculate md5 sums for all input files and then use this to update a
-#'   dataframe.
-#' If an extrafields function is supplied, it should take one parameter, the
-#'   list output of parse_key_lsm_metadata(), which will include as an
-#'   attribute the full contents of the metadata file dumped by the loci
-#'   showinf tool. The function should take care to return values for all
-#'   fields that it _could_ return each time it is called even if these are NA
-#'   and to ensure that values have a consistent data type per field.
+#' @details Will calculate md5 sums for all input files and then use this to
+#'   update a dataframe.
+#'
+#'   If an extrafields function is supplied, it should take one parameter, the
+#'   list output of \code{\link{parse_key_lsm_metadata}}, which will include as
+#'   an attribute the full contents of the metadata file dumped by the loci
+#'   showinf tool. The function should take care to return values for all fields
+#'   that it \emph{could} return each time it is called even if these are NA and
+#'   to ensure that values have a consistent data type per field.
 #' @param lsmdir Path to directory containing lsm files
 #' @param oldlsmdf Dataframe or path to rda file containing one
-#' @param extrafields Function to parse extra fields from metadata for each image
+#' @param extrafields Function to parse extra fields from metadata for each
+#'   image
 #' @param Verbose Logical: Show messages about progress/updating of cached data
 #' @return dataframe
 #' @export
-#' @seealso \code{\link{lsm_metadata}}
+#' @seealso \code{\link{lsm_metadata}}, \code{\link{parse_key_lsm_metadata}}
 make_lsm_df<-function(lsmdir,oldlsmdf=NULL,extrafields=NULL,Verbose=TRUE){
   lsmdf=data.frame(txtfile=dir(lsmdir,pattern = "txt$"),stringsAsFactors=FALSE)
   lsmdf$lsmfile=sub("txt$","lsm",lsmdf$txtfile)
@@ -98,6 +100,8 @@ make_lsm_df<-function(lsmdir,oldlsmdf=NULL,extrafields=NULL,Verbose=TRUE){
   
   if(Verbose) message("Computing md5 sums for ",nrow(lsmdf),' metadata files.\n')
   lsmdf$txtmd5=tools::md5sum(file.path(lsmdir,lsmdf$txtfile))
+  
+  if(nrow(lsmdf)==0) return(lsmdf)
   
   fieldsToCompute=c('lsmqhash',"Ch1","Ch2","ChannelName0","swapchannels","DimensionX", "DimensionY",
                     "DimensionZ", "VoxelSizeX", "VoxelSizeY","VoxelSizeZ")
