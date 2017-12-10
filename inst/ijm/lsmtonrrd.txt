@@ -30,7 +30,7 @@ setBatchMode(true);
 //print("file = "+file);
 if (file!=""){
 	arg = split(file,",");
-	if (arg.length<2 || arg.length>4) {
+	if (arg.length<2 || arg.length>5) {
 		exit();
 	}
 	if (arg.length==3){
@@ -39,6 +39,14 @@ if (file!=""){
 			exit("Output format must be either pic or nrrd");
 		}
 	}
+
+	if (arg.length==4){
+		outputChannelOrder=split(arg[3], "0");
+	} else {
+		// for historical reasons default is to swap first 2 channels
+		outputChannelOrder=split("0201030405", "0");
+	}
+	
 	// ... now deal with directories
 	if(arg[0]=="" || arg[1]==""){
 		exit();
@@ -124,18 +132,16 @@ function processFile(dir,outputDir,file) {
 		Ext.openImagePlus(path);
 		noImages=nImages-imagesAlreadyOpen;
 		if(noImages==1){
-			run("Split Channels");
-			noImages=nImages-imagesAlreadyOpen;
-		}
-		if(noImages!=2){
-			IJ.log("Warning there appear to be "+noImages+" channels (rather than 2).");
+			getDimensions(width, height, channels, slices, frames);
+			if(channels>1) {
+				run("Split Channels");
+				noImages=nImages-imagesAlreadyOpen;
+			}
 		}
 
 		for(i=noImages;i>0;i--){
 			processImage();
-			if(i==1) channel=2;
-			if(i==2) channel=1;
-			if(i>2) channel=i;
+			channel=outputChannel(i, noImages);
 			outfilestem=outputDir+substring(file,0,lastIndexOf(file,"."))+"_0"+channel;
 			if(outputformat=='pic'){
 				run("Biorad ...","biorad=["+outfilestem+".pic]");
@@ -150,6 +156,27 @@ function processFile(dir,outputDir,file) {
 			File.delete(lockpath);
 		}
 	}
+}
+
+// Return the output channel for an image
+// note that i is 1-indexed
+function outputChannel (i, numimages) {
+	if (i<=0) {
+		IJ.log("Warning: Invalid image channel number: "+i+". Defaulting to save as channel 1");
+		return 1;
+	}
+	
+	if(numimages==1) {
+		return 1;
+	}
+	
+	if(i > outputChannelOrder.length) {
+		chan=i;
+	} else {
+		chan=outputChannelOrder[i-1];
+	}
+	
+	return chan;
 }
 
 function processImage() {
