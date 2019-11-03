@@ -57,8 +57,8 @@ runFijiMacro <- function(macro="",macroArg="",headless=FALSE,batch=TRUE,
 #' }
 fiji <- function(fijiPath=NULL) {
   if(!is.null(fijiPath)) {
-    if(!file.exists(fijiPath)) stop("fiji is not at: ", fijiPath)
-    options(jimpipeline.fiji=fijiPath)
+    if(!file.exists(fijiPath)) 
+      stop("fiji is not at: ", fijiPath)
   } else {
     # do we have an option set?
     fijiPath=getOption('jimpipeline.fiji')
@@ -67,11 +67,16 @@ fiji <- function(fijiPath=NULL) {
         stop("fiji is not at: ", fijiPath, " as specified by options('jimpipeline.fiji')!")
     } else {
       # look for it in sensible places
-      if(nzchar(fijiPath <- Sys.which('fiji'))){
-        options(jimpipeline.fiji=fijiPath)
+      if(!nzchar(fijiPath <- Sys.which('fiji'))) {
+        macapp="/Applications/Fiji.app/Contents/MacOS/ImageJ-macosx"
+        if(file.exists(macapp))
+          fijiPath=macapp
+        else 
+          stop("Unable to find fiji!",
+               "Set options('jimpipeline.fiji') to point to the fiji command line executable!")
       }
-      else stop("Unable to find fiji!")
     }
   }
+  options(jimpipeline.fiji=fijiPath)
   normalizePath(fijiPath)
 }
