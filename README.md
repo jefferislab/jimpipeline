@@ -1,5 +1,5 @@
 <!-- badges: start -->
-[![Travis build status](https://travis-ci.org/jefferislab/jimpipeline.svg?branch=master)](https:/ravis-ci.org/jefferislab/jimpipeline)
+[![Travis build status](https://travis-ci.org/jefferislab/jimpipeline.svg?branch=master)](https:/travis-ci.org/jefferislab/jimpipeline)
 <!-- badges: end -->
 
 # jimpipeline
