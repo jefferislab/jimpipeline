@@ -18,4 +18,5 @@ Imports:
 Suggests:
     testthat
 Remotes: jefferislab/bftools
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
+Encoding: UTF-8

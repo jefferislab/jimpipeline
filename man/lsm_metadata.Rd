@@ -4,8 +4,8 @@
 \alias{lsm_metadata}
 \title{Extract the metadata from Zeiss LSM file using loci bioformats as text vector}
 \usage{
-lsm_metadata(f, cachefile = TRUE, ReturnMetaData = TRUE, Force = FALSE,
-  UseLock = FALSE)
+lsm_metadata(f, cachefile = TRUE, ReturnMetaData = TRUE,
+  Force = FALSE, UseLock = FALSE)
 }
 \arguments{
 \item{f}{Path to lsm file}

@@ -4,8 +4,8 @@
 \alias{convertlsmstonrrd}
 \title{Split Zeiss LSMs and save each channel to a nrrd}
 \usage{
-convertlsmstonrrd(lsmstoconvert, rawnrrdsdir, ChannelOrder = c(2, 1, 3, 4),
-  RandomOrder = TRUE, DryRun = TRUE, Verbose = !DryRun, ...)
+convertlsmstonrrd(lsmstoconvert, rawnrrdsdir, ChannelOrder = c(2, 1, 3,
+  4), RandomOrder = TRUE, DryRun = TRUE, Verbose = !DryRun, ...)
 }
 \arguments{
 \item{lsmstoconvert}{Paths to one or more LSMs or a single directory

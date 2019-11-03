@@ -4,7 +4,8 @@
 \alias{make_lsm_df}
 \title{Make summary dataframe for lsm files and their key metadata}
 \usage{
-make_lsm_df(lsmdir, oldlsmdf = NULL, extrafields = NULL, Verbose = TRUE)
+make_lsm_df(lsmdir, oldlsmdf = NULL, extrafields = NULL,
+  Verbose = TRUE)
 }
 \arguments{
 \item{lsmdir}{Path to directory containing lsm files}
