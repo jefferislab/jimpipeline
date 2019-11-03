@@ -1,3 +1,7 @@
+<!-- badges: start -->
+[![Travis build status](https://travis-ci.org/jefferislab/jimpipeline.svg?branch=master)](https:/ravis-ci.org/jefferislab/jimpipeline)
+<!-- badges: end -->
+
 # jimpipeline
 This package contain functions used by the [Jefferis Lab](http://jefferislab.org) during our large scale
 image processing and registration work. We will try to make these as
