@@ -50,7 +50,9 @@ logical indicating if the command completed successfully
 }
 \examples{
 # Path to current Fiji executable
+\donttest{
 fiji()
+}
 
 \dontrun{
 # Set path to preferred Fiji executable (this will be remembered)

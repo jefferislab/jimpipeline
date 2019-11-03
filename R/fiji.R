@@ -48,7 +48,9 @@ runFijiMacro <- function(macro="",macroArg="",headless=FALSE,batch=TRUE,
 #' @export
 #' @examples 
 #' # Path to current Fiji executable
+#' \donttest{
 #' fiji()
+#' }
 #' 
 #' \dontrun{
 #' # Set path to preferred Fiji executable (this will be remembered)
