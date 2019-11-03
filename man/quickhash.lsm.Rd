@@ -24,7 +24,7 @@ The first ~ 150,000 bytes includes a number of fields such as dimension and
 acquisition timestamp that are typically enough to make for a unique hash. In
 particular the first 150K (but not 100K) are unique across the 16226 v2
 flycircuit LSMs. The hope is the last 100K should include some image data
-(though in practice for flycrircuit LSMs) this is often in the 8 bit
+(though in practice for flycircuit LSMs) this is often in the 8 bit
 segmented neurons which nearly all have 0 background
 }
 \seealso{

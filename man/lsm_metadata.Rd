@@ -10,12 +10,12 @@ lsm_metadata(f, cachefile = TRUE, ReturnMetaData = TRUE,
 \arguments{
 \item{f}{Path to lsm file}
 
-\item{cachefile}{Whether to save a copy of metdata to disk (TRUE)}
+\item{cachefile}{Whether to save a copy of metadata to disk (TRUE)}
 
 \item{ReturnMetaData}{Whether to return metadata rather than success (default:
 \code{TRUE})}
 
-\item{Force}{whether to re-parse metdata even if a cached version exists}
+\item{Force}{whether to re-parse metadata even if a cached version exists}
 
 \item{UseLock}{whether to use a lock file while parsing for simple parallelism}
 }

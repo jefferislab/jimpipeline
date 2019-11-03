@@ -2,10 +2,10 @@
 #'
 #'Specifically, this relies on the showinf tool of loci Details
 #'@param f Path to lsm file
-#'@param cachefile Whether to save a copy of metdata to disk (TRUE)
+#'@param cachefile Whether to save a copy of metadata to disk (TRUE)
 #'@param ReturnMetaData Whether to return metadata rather than success (default:
 #'  \code{TRUE})
-#'@param Force whether to re-parse metdata even if a cached version exists
+#'@param Force whether to re-parse metadata even if a cached version exists
 #'@param UseLock whether to use a lock file while parsing for simple parallelism
 #'@return character vector of metadata OR TRUE/FALSE for success
 #'@export

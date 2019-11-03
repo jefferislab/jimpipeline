@@ -16,7 +16,9 @@ Imports:
     utils,
     nat.utils
 Suggests:
-    testthat
+    testthat,
+    spelling
 Remotes: jefferislab/bftools
 RoxygenNote: 6.1.1
 Encoding: UTF-8
+Language: en-GB
