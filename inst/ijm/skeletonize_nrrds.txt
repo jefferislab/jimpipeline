@@ -22,6 +22,7 @@ outputformat="nrrd" // or pic
 useLocksAndCheckOutput = true; // by default
 threshold=0;
 fileregex=".*";
+thresholdfirst=true;
 
 // Set up for headless image opening
 run("Bio-Formats Macro Extensions");
@@ -32,16 +33,26 @@ setBatchMode(true);
 //print("file = "+file);
 if (file!=""){
 	arg = split(file,",");
-	if (arg.length<2 || arg.length>4) {
+	if (arg.length<2 || arg.length>5) {
+	  print("Wrong number of arguments!")
 		exit();
 	}
-
-	if(arg.length==3) {
+	if(arg.length>=3) {
 		threshold=arg[2];
 	}
-	if(arg.length==4) {
-		fileregex=arg[3];
+	if(arg.length>=4) {
+		if(arg[3]>0) {
+		  thresholdfirst=true;
+		  print("Will apply threshold before rescaling!");
+		} else {
+		  thresholdfirst=false;
+		  print("Will apply threshold after rescaling!");
+		}
 	}
+	if(arg.length==5) {
+		fileregex=arg[4];
+	}
+
 	// ... now deal with directories
 	if(arg[0]=="" || arg[1]==""){
 		exit();
@@ -107,6 +118,7 @@ function processFiles(dir,outputDir) {
 function processFile(dir,outputDir,file) {
 	if (!endsWith(file, ".lock") && !endsWith(file, "skel.nrrd") && matches(file, fileregex)) {
 		path = dir+file;
+		print("Processing file "+file);
 		outfilestem=outputDir+substring(file, 0, lastIndexOf(file, ".")) + "_skel";
 		outfilepath=outfilestem + "." + outputformat;
 		if(useLocksAndCheckOutput){
@@ -127,7 +139,11 @@ function processFile(dir,outputDir,file) {
 		}
 
 		open(path);
-		processImage();
+		if(thresholdfirst){
+		  processImage2();
+		} else {
+		  processImage();
+		}
 		setKeyDown("alt");
 		run("Nrrd ... ", "nrrd=["+outfilepath+"]");
 		setKeyDown("none");
@@ -164,6 +180,36 @@ function processImage() {
       run("Convert to Mask", "background=Dark black");
     }
   }
+  run("Skeletonize (2D/3D)");
+}
+
+function processImage2() {
+  print("Entering processImage2!");
+  thri=parseInt(threshold);
+  print("thri="+thri);
+  if(isNaN(thri)) {
+    print("setAutoThreshold!");
+    setAutoThreshold(threshold+" dark stack");
+    run("Convert to Mask", "method="+threshold+" background=Dark black");
+  } else {
+    if(thri>0) {
+      getMinAndMax(min, max);
+      print("setThreshold("+thri+","+max+")");
+      setThreshold(thri, max);
+      run("Convert to Mask", "background=Dark black");
+    }
+  }
+  //run("Scale...", "x=0.5 y=0.5 z=0.5 interpolation=Bilinear average process");
+  getDimensions(width, height, channels, slices, frames);
+  scalefac=0.5;
+  iwidth=round(width*scalefac);
+  iheight=round(height*scalefac);
+  islices=round(slices*scalefac);
+  run("Size...", "width="+iwidth+" height="+iheight+" depth="+islices+" average interpolation=Bilinear");
+  // re-threshold at 50% of label value
+  setThreshold(128, 255);
+  print("setThreshold(128,255)");
+  run("Convert to Mask", "background=Dark black");
   run("Skeletonize (2D/3D)");
 }
 

@@ -4,6 +4,9 @@
 #' @param outdir Path to output directory
 #' @param threshold Integer specifying an absolute threshold or string
 #'   specifying ImageJ authothreshold method.
+#' @param threshold.first Whether to threshold the image before rescaling. This
+#'   is a good idea if you have mask images (especially 0-1 masks) as your
+#'   input. (default: \code{FALSE})
 #' @param fileregex Optional regex matching the \bold{whole} of the filename (NB
 #'   just filename without parent directory)
 #' @inheritParams convertlsmstonrrd
@@ -17,12 +20,13 @@
 #' skeletonise_nrrds('/path/to/indir', '/path/to/outdir')
 #' # convert those to dotrops for NBLAST
 #' dps=dotprops(dir('/path/to/outdir', pattern='nrrd$', full.names=TRUE))
-#' 
+#'
 #' # additional arguments
 #' skeletonise_nrrds('/path/to/indir', '/path/to/outdir', threshold='Iso_Data')
 #' skeletonise_nrrds('/path/to/indir', '/path/to/outdir', fileregex='^seg_whole.*c0\\.nrrd')
 #' }
-skeletonise_nrrds <- function(input, outdir, threshold=0, fileregex=NULL, DryRun=TRUE, ...) {
+skeletonise_nrrds <- function(input, outdir, threshold=0, threshold.first=FALSE,
+                              fileregex=NULL, DryRun=TRUE, ...) {
   skel=system.file('ijm','skeletonize_nrrds.txt', package = 'jimpipeline')
 
   outdir <- normalizePath(outdir, mustWork = FALSE)
@@ -33,7 +37,9 @@ skeletonise_nrrds <- function(input, outdir, threshold=0, fileregex=NULL, DryRun
   
   ma=paste(normalizePath(input, mustWork = TRUE), 
            outdir,
-           threshold, sep=",")
+           threshold, 
+           ifelse(threshold.first, 1, 0),
+           sep=",")
   if(!is.null(fileregex))
     ma=paste(ma, fileregex, sep=",")
   

@@ -4,8 +4,8 @@
 \alias{skeletonise_nrrds}
 \title{Skeletonise NRRD images (e.g. to make them suitable for NBLAST)}
 \usage{
-skeletonise_nrrds(input, outdir, threshold = 0, fileregex = NULL,
-  DryRun = TRUE, ...)
+skeletonise_nrrds(input, outdir, threshold = 0,
+  threshold.first = FALSE, fileregex = NULL, DryRun = TRUE, ...)
 }
 \arguments{
 \item{input}{Path to single input file or an input directory}
@@ -14,6 +14,10 @@ skeletonise_nrrds(input, outdir, threshold = 0, fileregex = NULL,
 
 \item{threshold}{Integer specifying an absolute threshold or string
 specifying ImageJ authothreshold method.}
+
+\item{threshold.first}{Whether to threshold the image before rescaling. This
+is a good idea if you have mask images (especially 0-1 masks) as your
+input. (default: \code{FALSE})}
 
 \item{fileregex}{Optional regex matching the \bold{whole} of the filename (NB
 just filename without parent directory)}
