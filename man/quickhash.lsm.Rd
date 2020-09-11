@@ -4,8 +4,7 @@
 \alias{quickhash.lsm}
 \title{Compute a quick hash for head and tail of a Zeiss LSM confocal file}
 \usage{
-quickhash.lsm(f, offsets = c(0, -1e+05), chunksizes = c(150000, 1e+05),
-  ...)
+quickhash.lsm(f, offsets = c(0, -1e+05), chunksizes = c(150000, 1e+05), ...)
 }
 \arguments{
 \item{f}{Path to lsm files}

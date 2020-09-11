@@ -4,8 +4,7 @@
 \alias{quickhash}
 \title{Compute a (quick) hash for some part of the contents of a set of files}
 \usage{
-quickhash(f, offsets = 0, chunksizes = Inf, CheckFileSize = TRUE,
-  ...)
+quickhash(f, offsets = 0, chunksizes = Inf, CheckFileSize = TRUE, ...)
 }
 \arguments{
 \item{f}{Path to files to hash}

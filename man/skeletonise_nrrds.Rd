@@ -4,8 +4,15 @@
 \alias{skeletonise_nrrds}
 \title{Skeletonise NRRD images (e.g. to make them suitable for NBLAST)}
 \usage{
-skeletonise_nrrds(input, outdir, threshold = 0,
-  threshold.first = FALSE, fileregex = NULL, DryRun = TRUE, ...)
+skeletonise_nrrds(
+  input,
+  outdir,
+  threshold = 0,
+  threshold.first = FALSE,
+  fileregex = NULL,
+  DryRun = TRUE,
+  ...
+)
 }
 \arguments{
 \item{input}{Path to single input file or an input directory}

@@ -5,11 +5,21 @@
 \alias{fiji}
 \title{Call external Fiji/ImageJ executable}
 \usage{
-runFijiMacro(macro = "", macroArg = "", headless = FALSE,
-  batch = TRUE, MinMem = MaxMem, MaxMem = "2500m",
-  IncrementalGC = TRUE, Threads = NULL, fijiArgs = NULL,
-  javaArgs = NULL, ijArgs = NULL, fijiPath = fiji(),
-  DryRun = FALSE)
+runFijiMacro(
+  macro = "",
+  macroArg = "",
+  headless = FALSE,
+  batch = TRUE,
+  MinMem = MaxMem,
+  MaxMem = "2500m",
+  IncrementalGC = TRUE,
+  Threads = NULL,
+  fijiArgs = NULL,
+  javaArgs = NULL,
+  ijArgs = NULL,
+  fijiPath = fiji(),
+  DryRun = FALSE
+)
 
 fiji(fijiPath = NULL)
 }
