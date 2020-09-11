@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -38,7 +42,6 @@
 <meta property="og:title" content="Call external Fiji/ImageJ executable — runFijiMacro" />
 <meta property="og:description" content="runFijiMacro runs a macro using preferred Fiji executable
 fiji returns path to preferred Fiji executable" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -56,7 +59,7 @@ fiji returns path to preferred Fiji executable" />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -90,7 +93,12 @@ fiji returns path to preferred Fiji executable" />
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/jefferislab/jimpipeline/">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -105,7 +113,7 @@ fiji returns path to preferred Fiji executable" />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Call external Fiji/ImageJ executable</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/jefferislab/jimpipeline/blob/master/R/fiji.R'><code>R/fiji.R</code></a></small>
     <div class="hidden name"><code>runFijiMacro.Rd</code></div>
     </div>
 
@@ -114,13 +122,23 @@ fiji returns path to preferred Fiji executable" />
 <p><code>fiji</code> returns path to preferred Fiji executable</p>
     </div>
 
-    <pre class="usage"><span class='fu'>runFijiMacro</span>(<span class='kw'>macro</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>macroArg</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>headless</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>batch</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>MinMem</span> <span class='kw'>=</span> <span class='no'>MaxMem</span>, <span class='kw'>MaxMem</span> <span class='kw'>=</span> <span class='st'>"2500m"</span>,
-  <span class='kw'>IncrementalGC</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>Threads</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>fijiArgs</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>javaArgs</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ijArgs</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>fijiPath</span> <span class='kw'>=</span> <span class='fu'>fiji</span>(),
-  <span class='kw'>DryRun</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+    <pre class="usage"><span class='fu'>runFijiMacro</span>(
+  macro = <span class='st'>""</span>,
+  macroArg = <span class='st'>""</span>,
+  headless = <span class='fl'>FALSE</span>,
+  batch = <span class='fl'>TRUE</span>,
+  MinMem = <span class='kw'>MaxMem</span>,
+  MaxMem = <span class='st'>"2500m"</span>,
+  IncrementalGC = <span class='fl'>TRUE</span>,
+  Threads = <span class='kw'>NULL</span>,
+  fijiArgs = <span class='kw'>NULL</span>,
+  javaArgs = <span class='kw'>NULL</span>,
+  ijArgs = <span class='kw'>NULL</span>,
+  fijiPath = <span class='fu'>fiji</span>(),
+  DryRun = <span class='fl'>FALSE</span>
+)
 
-<span class='fu'>fiji</span>(<span class='kw'>fijiPath</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+<span class='fu'>fiji</span>(fijiPath = <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -184,22 +202,20 @@ executing it.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Path to current Fiji executable</span>
 <span class='co'># \donttest{</span>
-<span class='fu'>fiji</span>()</div><div class='output co'>#&gt; <span class='error'>Error in fiji(): Unable to find fiji!Set options('jimpipeline.fiji') to point to the fiji command line executable!</span></div><div class='input'><span class='co'># }</span>
+<span class='fu'>fiji</span>()
+</div><div class='output co'>#&gt; <span class='error'>Error in fiji(): Unable to find fiji!Set options('jimpipeline.fiji') to point to the fiji command line executable!</span></div><div class='input'><span class='co'># }</span>
 
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='co'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='co'># Set path to preferred Fiji executable (this will be remembered)</span>
 <span class='co'># you can also set options(jimpipeline.fiji="/some/path")</span>
 <span class='fu'>fiji</span>(<span class='st'>"/Applications/Fiji.app/Contents/MacOS/ImageJ-macosx"</span>)
-}</div></pre>
+}
+</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -210,7 +226,7 @@ executing it.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>
