@@ -25,3 +25,5 @@ Remotes: jefferislab/bftools
 RoxygenNote: 7.1.1
 Encoding: UTF-8
 Language: en-GB
+URL: https://github.com/jefferislab/jimpipeline
+BugReports: https://github.com/jefferislab/jimpipeline/issues
